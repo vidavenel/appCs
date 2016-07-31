@@ -66,8 +66,6 @@ class SmsController extends Controller
         $groupes = array_map('intval', $groupes);
         $agents = array_map('intval', $agents);
 
-        $client = new \GuzzleHttp\Client();
-
         // on ajoute au tableau agents tous les agents des groupes sans doubon
         foreach (Groupe::whereIn('id', $groupes)->get() as $item) {
             foreach ($item->agents()->get() as $value) {
