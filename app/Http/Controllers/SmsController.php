@@ -71,12 +71,14 @@ class SmsController extends Controller
             foreach ($item->agents()->get() as $value) {
                 if (!in_array($value->id, $agents)){
                     $agents[] = $value->id;
-                    // on envoi le SMS
-                    HttpClient::get('http://83.197.185.47:9090/sendsms?phone=0659300020&text=testEnvoi&password=test');
-                    Log::info('New SMS');
                 }
-
             }
+        }
+
+        foreach ($agents as $agent) {
+            // on envoi le SMS
+            HttpClient::get('http://83.197.185.47:9090/sendsms?phone=0659300020&text='.urlencode($request->get('body')).'&password=test');
+            Log::info('New SMS');
         }
 
         // on associe les agent destinataires au SMS
