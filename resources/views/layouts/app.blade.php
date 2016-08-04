@@ -376,5 +376,8 @@ desired effect
 <!-- FastClick -->
 <script src="{{url('plugins/fastclick/fastclick.js')}}"></script>
 
+{{-- script de gestion des classes actives dans le menu de navigation --}}
+<script src="{{url('nav.js')}}"></script>
+
 </body>
 </html>

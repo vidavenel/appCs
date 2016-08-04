@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use HttpClient;
 use Log;
+use phpDocumentor\Reflection\Types\Array_;
 
 class SmsController extends Controller
 {
@@ -75,9 +76,11 @@ class SmsController extends Controller
             }
         }
 
+
         foreach ($agents as $agent) {
             // on envoi le SMS
-            HttpClient::get('http://83.197.185.47:9090/sendsms?phone=0659300020&text='.urlencode($request->get('body')).'&password=test');
+            dd(\App\Ip::all()->last()->address);
+            HttpClient::get('http://'. \App\Ip::all()->last()->address .':9090/sendsms?phone=0659300020&text='.urlencode($request->get('body')).'&password=test');
             Log::info('New SMS');
         }
 

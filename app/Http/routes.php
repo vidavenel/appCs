@@ -12,7 +12,7 @@
 */
 
 Route::get('/', 'HomeController@index');
-
+Route::get('/ip', 'IpController@store');
 Route::auth();
 
 Route::get('/home', 'HomeController@index');

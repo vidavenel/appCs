@@ -34,7 +34,7 @@
                                 <tr>
                                     <td>{{$user->name}}</td>
                                     <td>{{$user->email}}</td>
-                                    <td><span class="badge @if ($user->isValidate) bg-green @else bg-red @endif">@if ($user->isValidate)
+                                    <td><span class="badge @if ($user->activate) bg-green @else bg-red @endif">@if ($user->activate)
                                                 OK @else NON @endif</span></td>
                                     <td><a href="{{route('user.edit', $user->id)}}">
                                             <button type="button" class="btn btn-block btn-default btn-xs"><i

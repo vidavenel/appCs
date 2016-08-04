@@ -1,4 +1,4 @@
-<ul class="nav sidebar-menu">
+<ul class="sidebar-menu">
     <li class="header">HEADER</li>
     {{-- menu SMS --}}
     <li class="treeview active">
@@ -8,7 +8,7 @@
                               <i class="fa fa-angle-left pull-right"></i>
                             </span>
         </a>
-        <ul class="nav treeview-menu">
+        <ul class="treeview-menu">
             <li class="active"><a href="{{route('sms.index')}}"><i class="fa fa-list-ul"></i> Liste</a></li>
             <li><a href="{{route('sms.create')}}"><i class="fa fa-plus"></i> Creer</a></li>
         </ul>
@@ -22,7 +22,7 @@
                               <i class="fa fa-angle-left pull-right"></i>
                             </span>
         </a>
-        <ul class="nav treeview-menu">
+        <ul class="treeview-menu">
             <li><a href="{{route('agent.index')}}"><i class="fa fa-list-ul"></i> Liste</a></li>
             <li><a href="{{route('agent.create')}}"><i class="fa fa-plus"></i> Creer</a></li>
         </ul>
@@ -36,7 +36,7 @@
                               <i class="fa fa-angle-left pull-right"></i>
                             </span>
         </a>
-        <ul class="nav treeview-menu">
+        <ul class="treeview-menu">
             <li><a href="{{route('groupe.index')}}"><i class="fa fa-list-ul"></i> Liste</a></li>
             <li><a href="{{route('groupe.create')}}"><i class="fa fa-plus"></i> Creer</a></li>
         </ul>
@@ -50,7 +50,7 @@
                               <i class="fa fa-angle-left pull-right"></i>
                             </span>
         </a>
-        <ul class="nav treeview-menu">
+        <ul class="treeview-menu">
             <li><a href="{{route('user.index')}}"><i class="fa fa-list-ul"></i> Liste</a></li>
             <li><a href="{{route('user.create')}}"><i class="fa fa-plus"></i> Creer</a></li>
         </ul>

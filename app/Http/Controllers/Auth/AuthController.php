@@ -6,7 +6,11 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
+use Symfony\Component\Routing\Route;
 use Validator;
+use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
@@ -68,5 +72,20 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    /**
+     * Get the needed authorization credentials from the request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+    protected function getCredentials(Request $request)
+    {
+        return [
+            $this->loginUsername() => $request->input($this->loginUsername()),
+            'password' => $request->input('password'),
+            'activate' => true
+        ];
     }
 }

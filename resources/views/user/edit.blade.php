@@ -51,15 +51,15 @@
                                 <label for="email">Validé</label>
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="isValidate" id="isValidate1" value="1"
-                                               @if($user->isValidate) checked @endif>
+                                        <input type="radio" name="activate" id="activate1" value="1"
+                                               @if($user->activate) checked @endif>
                                         oui
                                     </label>
                                 </div>
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="isValidate" id="isValidate2" value="0"
-                                               @if(!$user->isValidate) checked @endif>
+                                        <input type="radio" name="activate" id="activate0" value="0"
+                                               @if(!$user->activate) checked @endif>
                                         non
                                     </label>
                                 </div>
