@@ -159,6 +159,9 @@ return [
         /* vinelab envoi sms */
         Vinelab\Http\HttpServiceProvider::class,
 
+        /* debug bar */
+        Barryvdh\Debugbar\ServiceProvider::class,
+
     ],
 
     /*
@@ -208,6 +211,8 @@ return [
         /* vinelab/Http */
         'HttpClient' => Vinelab\Http\Facades\Client::class,
 
+        /* debugbar */
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
 
 ];

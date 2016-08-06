@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Support\Str;
 
 class PasswordController extends Controller
 {
@@ -23,7 +24,6 @@ class PasswordController extends Controller
     /**
      * Create a new password controller instance.
      *
-     * @return void
      */
     public function __construct()
     {
@@ -31,13 +31,19 @@ class PasswordController extends Controller
     }
 
     /**
-     * Get the response for after a successful password reset.
+     * Reset the given user's password.
      *
-     * @param  string  $response
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param  \Illuminate\Contracts\Auth\CanResetPassword  $user
+     * @param  string  $password
+     * @return void
      */
-    protected function getResetSuccessResponse($response)
+    protected function resetPassword($user, $password)
     {
-        return redirect(url('logout'));
+        $user->forceFill([
+            'password' => bcrypt($password),
+            'remember_token' => Str::random(60),
+        ])->save();
+
+        //Auth::guard($this->getGuard())->login($user);
     }
 }
