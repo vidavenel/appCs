@@ -5,8 +5,6 @@ Homestead.yaml
 Homestead.json
 .env
 
-laradock/
-
 .idea/appCs.iml
 .idea/copyright/
 .idea/dataSources.ids
