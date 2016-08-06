@@ -79,7 +79,7 @@ class SmsController extends Controller
 
         foreach ($agents as $agent) {
             // on envoi le SMS
-            dd(\App\Ip::all()->last()->address);
+            //dd(\App\Ip::all()->last()->address);
             HttpClient::get('http://'. \App\Ip::all()->last()->address .':9090/sendsms?phone=0659300020&text='.urlencode($request->get('body')).'&password=test');
             Log::info('New SMS');
         }
