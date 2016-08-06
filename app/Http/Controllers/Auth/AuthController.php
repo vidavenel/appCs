@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Auth;
 use Symfony\Component\Routing\Route;
 use Validator;
 use Illuminate\Http\Request;
-use Debugbar;
 
 class AuthController extends Controller
 {

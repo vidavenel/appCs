@@ -160,7 +160,7 @@ return [
         Vinelab\Http\HttpServiceProvider::class,
 
         /* debug bar */
-        Barryvdh\Debugbar\ServiceProvider::class,
+        //Barryvdh\Debugbar\ServiceProvider::class,
 
     ],
 
@@ -212,7 +212,7 @@ return [
         'HttpClient' => Vinelab\Http\Facades\Client::class,
 
         /* debugbar */
-        'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        //'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
 
 ];
