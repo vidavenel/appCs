@@ -10,7 +10,7 @@
         </a>
         <ul class="treeview-menu">
             <li class="active"><a href="{{route('sms.index')}}"><i class="fa fa-list-ul"></i> Liste</a></li>
-            <li><a href="{{route('sms.create')}}"><i class="fa fa-plus"></i> Creer</a></li>
+            @can('admin')<li><a href="{{route('sms.create')}}"><i class="fa fa-plus"></i> Creer</a></li>@endcan
         </ul>
     </li>
     @can('admin')

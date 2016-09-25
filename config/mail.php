@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'contac@cisaups.fr', 'name' => null],
+    'from' => ['address' => 'contact@sp-aups.com', 'name' => null],
 
     /*
     |--------------------------------------------------------------------------
