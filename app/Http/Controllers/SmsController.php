@@ -81,7 +81,7 @@ class SmsController extends Controller
             // on envoi le SMS
             //dd(\App\Ip::all()->last()->address);
             HttpClient::get('http://'. \App\Ip::all()->last()->address .':9090/sendsms?phone='. Agent::findOrFail($agent)->phone .'&text='.urlencode($request->get('body')).'&password=test');
-            Log::info('New SMS');
+            Log::info('New SMS de : '.$user->name.' Pour : '.Agent::findOrFail($agent)->nom.' detail : '.urlencode($request->get('body')));
         }
 
         // on associe les agent destinataires au SMS

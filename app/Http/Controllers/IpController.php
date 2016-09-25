@@ -18,7 +18,11 @@ class IpController extends Controller
     public function store(Request $request)
     {
         if ($request->get('key') === 'centreDeSecoursAups'){
-            Ip::create(['address'=> $request->ip()]);
+            $ipAddress = $_SERVER['REMOTE_ADDR'];
+	    if (array_key_exists('HTTP_X_FORWARDED_FOR', $_SERVER)) {
+    		$ipAddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+	    }
+            Ip::create(['address'=> $ipAddress]);
             echo 'ok';
         }
     }
