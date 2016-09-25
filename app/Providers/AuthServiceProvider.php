@@ -32,7 +32,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('admin', function ($user) {
-            if ($user->admin || $user->id === 1)
+            if ($user->admin)
                 return true;
             return false;
         });

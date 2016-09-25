@@ -14,6 +14,7 @@ class GroupeController extends Controller
      */
     public function index()
     {
+        $this->authorize('admin');
         $groupes = Groupe::all();
         return view('groupe.index', compact('groupes'));
     }
@@ -25,6 +26,7 @@ class GroupeController extends Controller
      */
     public function create()
     {
+        $this->authorize('admin');
         $groupe = new Groupe();
         $agents = \App\Agent::all();
         return view('groupe.create', compact('groupe', 'agents'));
@@ -38,6 +40,7 @@ class GroupeController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('admin');
         Groupe::create($request->all())->agents()->sync($request->agents);
         return redirect(route('groupe.index'));
     }
@@ -63,6 +66,7 @@ class GroupeController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('admin');
         $groupe = Groupe::findOrFail($id);
         $agents = \App\Agent::all();
         return view('groupe.edit', compact('groupe', 'agents'));
@@ -77,6 +81,7 @@ class GroupeController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->authorize('admin');
         $groupe = Groupe::findOrFail($id);
         $groupe->update($request->all());
         $groupe->agents()->sync($request->agents);

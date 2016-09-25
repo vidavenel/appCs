@@ -29,6 +29,7 @@ class SmsController extends Controller
      */
     public function index()
     {
+        $this->authorize('admin');
         $sms = Sms::all();
         return view('sms.index', compact('sms'));
     }
@@ -97,6 +98,7 @@ class SmsController extends Controller
      */
     public function show($id)
     {
+        $this->authorize('admin');
         $SMS = Sms::findOrFail($id);
 
         return view('sms.show', compact('SMS'));
