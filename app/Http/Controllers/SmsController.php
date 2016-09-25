@@ -87,7 +87,7 @@ class SmsController extends Controller
         // on associe les agent destinataires au SMS
         $SMS->agents()->attach($agents);
 
-        return redirect(route('sms.index'));
+        return redirect(route('sms.create'));
     }
 
     /**
