@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
 
 class Authenticate
 {
@@ -24,6 +25,9 @@ class Authenticate
                 return redirect()->guest('login');
             }
         }
+        // on ajoute l'utilisateur disponible dans toute les vue
+        $user = Auth::user() ? Auth::user() : new \App\User();
+        View::share('user', $user);
 
         return $next($request);
     }

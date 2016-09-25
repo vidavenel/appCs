@@ -11,13 +11,21 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+
 Route::get('/ip', 'IpController@store');
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
-Route::resource('sms', 'SmsController');
-Route::resource('agent', 'AgentController');
-Route::resource('groupe', 'GroupeController');
-Route::resource('user', 'UserController');
 
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/', 'SmsController@create');
+    Route::get('/sms/create', 'SmsController@create');
+    Route::post('/sms', 'SmsController@store');
+    Route::get('/groupe/{id}', 'GroupeController@show');
+});
+Route::group(['middleware' => ['auth', 'can:admin']], function () {
+    Route::resource('sms', 'SmsController');
+    Route::resource('agent', 'AgentController');
+    Route::resource('groupe', 'GroupeController');
+    Route::resource('user', 'UserController');
+});

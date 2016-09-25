@@ -53,7 +53,6 @@ desired effect
 -->
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
-
     <!-- Main Header -->
     <header class="main-header">
 
@@ -90,7 +89,7 @@ desired effect
                                         <a href="#">
                                             <div class="pull-left">
                                                 <!-- User Image -->
-                                                <img src="{{url('dist/img/user2-160x160.jpg')}}" class="img-circle"
+                                                <img src="{{url('sp.jpg')}}" class="img-circle"
                                                      alt="User Image">
                                             </div>
                                             <!-- Message title and timestamp -->
@@ -177,42 +176,23 @@ desired effect
                         <!-- Menu Toggle Button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <!-- The user image in the navbar-->
-                            <img src="{{url('dist/img/user2-160x160.jpg')}}" class="user-image" alt="User Image">
+                            <img src="{{url('sp.jpg')}}" class="user-image" alt="User Image">
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                            <span class="hidden-xs">Alexander Pierce</span>
+                            <span class="hidden-xs">@if(isset($user)){{$user->name}}@endif</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
                             <li class="user-header">
-                                <img src="{{url('dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
+                                <img src="{{url('sp.jpg')}}" class="img-circle" alt="User Image">
 
                                 <p>
-                                    Alexander Pierce - Web Developer
-                                    <small>Member since Nov. 2012</small>
+                                    @if(isset($user)){{$user->name}}@endif
                                 </p>
-                            </li>
-                            <!-- Menu Body -->
-                            <li class="user-body">
-                                <div class="row">
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Followers</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Sales</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Friends</a>
-                                    </div>
-                                </div>
-                                <!-- /.row -->
                             </li>
                             <!-- Menu Footer-->
                             <li class="user-footer">
-                                <div class="pull-left">
-                                    <a href="#" class="btn btn-default btn-flat">Profile</a>
-                                </div>
                                 <div class="pull-right">
-                                    <a href="{{url('/logout')}}" class="btn btn-default btn-flat">Sign out</a>
+                                    <a href="{{url('/logout')}}" class="btn btn-default btn-flat">Se déconnecter</a>
                                 </div>
                             </li>
                         </ul>
@@ -234,26 +214,14 @@ desired effect
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="{{url('dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
+                    <img src="{{url('sp.jpg')}}" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
-                    <p>Alexander Pierce</p>
+                    <p>@if(isset($user)){{$user->name}}@endif</p>
                     <!-- Status -->
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
             </div>
-
-            <!-- search form (Optional) -->
-            <form action="#" method="get" class="sidebar-form">
-                <div class="input-group">
-                    <input type="text" name="q" class="form-control" placeholder="Search...">
-                    <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-                </div>
-            </form>
-            <!-- /.search form -->
 
             <!-- Sidebar Menu -->
         @include('layouts.nav')
@@ -275,7 +243,7 @@ desired effect
             Anything you want
         </div>
         <!-- Default to the left -->
-        <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; 2016 <a href="http://www.sapeurs-pompiers-aups.com">CIS AUPS</a>.</strong> All rights reserved.
     </footer>
 
     <!-- Control Sidebar -->
@@ -378,6 +346,8 @@ desired effect
 
 {{-- script de gestion des classes actives dans le menu de navigation --}}
 <script src="{{url('nav.js')}}"></script>
+
+@stack('script')
 
 </body>
 </html>

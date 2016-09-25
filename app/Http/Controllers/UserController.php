@@ -31,7 +31,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user.create');
+        $user = new User();
+        return view('user.form', compact('user'));
     }
 
     /**
@@ -42,12 +43,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        User::create([
+        $user = User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => bcrypt(str_random(20)),
         ]);
-        $this->sendResetLinkEmail($request);
+
         return redirect(route('user.index'));
     }
 
@@ -71,7 +72,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        return view('user.edit', compact('user'));
+        return view('user.form', compact('user'));
     }
 
     /**
@@ -85,6 +86,11 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         $user->update($request->all());
+        if ($request->get('admin') == 1){
+            $user->admin = true;
+            $user->save();
+        }
+
         return redirect(route('user.index'));
     }
 

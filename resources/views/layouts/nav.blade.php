@@ -13,7 +13,7 @@
             <li><a href="{{route('sms.create')}}"><i class="fa fa-plus"></i> Creer</a></li>
         </ul>
     </li>
-
+    @can('admin')
     {{-- menu agent --}}
     <li class="treeview">
         <a href="javascript:void(0)">
@@ -55,4 +55,5 @@
             <li><a href="{{route('user.create')}}"><i class="fa fa-plus"></i> Creer</a></li>
         </ul>
     </li>
+        @endcan
 </ul>

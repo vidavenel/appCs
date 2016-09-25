@@ -165,6 +165,9 @@
                                             </div>
                                         </div>
                                         <!-- /.box-body -->
+                                        <div id="agent-loader" class="overlay" style="display: none;">
+                                            <i class="fa fa-refresh fa-spin"></i>
+                                        </div>
                                     </div>
                                     <!-- /.box -->
                                 </div>
@@ -187,3 +190,19 @@
     </section>
     <!-- /.content -->
 @endsection
+
+@push('script')
+<script>
+    $(':input[name="groupes[]"]').change(function () {
+        if (this.checked) {
+            $("#agent-loader").show();
+            $.get('/groupe/'+ $(this).val(), function (data) {
+                for (var i in JSON.parse(data)){
+                    $(':input[name="agents[]"]').val(i).attr('checked', true);
+                    $("#agent-loader").hide();
+                }
+            })
+        }
+    })
+</script>
+@endpush
