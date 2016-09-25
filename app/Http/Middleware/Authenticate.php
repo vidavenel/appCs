@@ -26,8 +26,8 @@ class Authenticate
             }
         }
         // on ajoute l'utilisateur disponible dans toute les vue
-        $user = Auth::user() ? Auth::user() : new \App\User();
-        View::share('user', $user);
+        $currentUser = Auth::user() ? Auth::user() : new \App\User();
+        View::share('currentUser', $currentUser);
 
         return $next($request);
     }

@@ -178,7 +178,7 @@ desired effect
                             <!-- The user image in the navbar-->
                             <img src="{{url('sp.jpg')}}" class="user-image" alt="User Image">
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                            <span class="hidden-xs">@if(isset($user)){{$user->name}}@endif</span>
+                            <span class="hidden-xs">@if(isset($currentUser)){{$currentUser->name}}@endif</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
@@ -186,7 +186,7 @@ desired effect
                                 <img src="{{url('sp.jpg')}}" class="img-circle" alt="User Image">
 
                                 <p>
-                                    @if(isset($user)){{$user->name}}@endif
+                                    @if(isset($currentUser)){{$currentUser->name}}@endif
                                 </p>
                             </li>
                             <!-- Menu Footer-->
@@ -217,7 +217,7 @@ desired effect
                     <img src="{{url('sp.jpg')}}" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
-                    <p>@if(isset($user)){{$user->name}}@endif</p>
+                    <p>@if(isset($currentUser)){{$currentUser->name}}@endif</p>
                     <!-- Status -->
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
