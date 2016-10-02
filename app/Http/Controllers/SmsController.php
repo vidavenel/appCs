@@ -29,8 +29,10 @@ class SmsController extends Controller
      */
     public function index()
     {
-        $this->authorize('admin');
-        $sms = Sms::all();
+        if (Auth::user()->admin)
+            $sms = Sms::all();
+        else
+            $sms = Auth::user()->sms;
         return view('sms.index', compact('sms'));
     }
 

@@ -9,7 +9,7 @@
                             </span>
         </a>
         <ul class="treeview-menu">
-            @can('admin')<li class="active"><a href="{{route('sms.index')}}"><i class="fa fa-list-ul"></i> Liste</a></li>@endcan
+            <li class="active"><a href="{{route('sms.index')}}"><i class="fa fa-list-ul"></i> Liste</a></li>
             <li><a href="{{route('sms.create')}}"><i class="fa fa-plus"></i> Creer</a></li>
         </ul>
     </li>
