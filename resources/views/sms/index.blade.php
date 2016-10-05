@@ -40,15 +40,8 @@
                                     <td colspan="3">Aucun sms envoyé</td>
                                 </tr>
                             @endforelse
-                            {{ $sms->links() }}
                             </tbody>
-                            <tfoot>
-                            <tr>
-                                <th>Date</th>
-                                <th>Message</th>
-                                <th>Expéditeur</th>
-                            </tr>
-                            </tfoot>
+                            {{ $sms->links() }}
                         </table>
                     </div>
                     <!-- /.box-body -->
