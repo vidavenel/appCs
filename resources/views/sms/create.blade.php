@@ -198,8 +198,8 @@
             $("#agent-loader").show();
             $.get('/groupe/'+ $(this).val(), function (data) {
                 var ids = $.parseJSON(data);
-                $.each(ids, function (id) {
-                    $(':input[name="agents[]"][value="'+ id +'"]').attr('checked', true);
+                $.each(ids, function (id, value) {
+                    $(':input[name="agents[]"][value="'+ value +'"]').attr('checked', true);
                 })
                 $("#agent-loader").hide();
             })
