@@ -40,6 +40,7 @@
                                     <td colspan="3">Aucun sms envoyé</td>
                                 </tr>
                             @endforelse
+                            {{ $sms->links() }}
                             </tbody>
                             <tfoot>
                             <tr>

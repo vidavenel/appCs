@@ -30,9 +30,9 @@ class SmsController extends Controller
     public function index()
     {
         if (Auth::user()->admin)
-            $sms = Sms::all();
+            $sms = Sms::paginate(20);
         else
-            $sms = Auth::user()->sms;
+            $sms = Auth::user()->sms()->paginate(20);
         return view('sms.index', compact('sms'));
     }
 
