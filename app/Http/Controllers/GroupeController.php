@@ -51,10 +51,10 @@ class GroupeController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $id)
+    public function show($id)
     {
-        if($request->ajax()){
-            return Groupe::find($id)->with('agents')->first()->agents->keys('id')->toJson();
+        if(request()->ajax()){
+            return Groupe::find($id)->agents->pluck('id')->toJson();
         }
     }
 

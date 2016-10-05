@@ -199,8 +199,8 @@
             $.get('/groupe/'+ $(this).val(), function (data) {
                 for (var i in JSON.parse(data)){
                     $(':input[name="agents[]"]').val(i).attr('checked', true);
-                    $("#agent-loader").hide();
                 }
+                $("#agent-loader").hide();
             })
         }
     })
