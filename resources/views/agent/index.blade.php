@@ -47,6 +47,7 @@
                             @endforelse
                             </tbody>
                         </table>
+                        {{$agents->links()}}
                     </div>
                     <!-- /.box-body -->
                 </div>

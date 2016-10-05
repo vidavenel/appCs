@@ -24,7 +24,9 @@ class AgentController extends Controller
      */
     public function index()
     {
-        $agents = Agent::orderBy('nom', 'desc')->get();
+        $agents = Agent::orderBy('nom', 'asc')
+            ->paginate(20)
+            ->get();
         return view('agent.index', compact('agents'));
     }
 
