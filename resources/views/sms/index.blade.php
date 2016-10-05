@@ -41,8 +41,8 @@
                                 </tr>
                             @endforelse
                             </tbody>
-                            {{ $sms->links() }}
                         </table>
+                        {{ $sms->links() }}
                     </div>
                     <!-- /.box-body -->
                 </div>
