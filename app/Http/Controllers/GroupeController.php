@@ -54,7 +54,7 @@ class GroupeController extends Controller
     public function show(Request $request, $id)
     {
         if($request->ajax()){
-            return Groupe::find(1)->with('agents')->first()->agents->keys('id')->toJson();
+            return Groupe::find($id)->with('agents')->first()->agents->keys('id')->toJson();
         }
     }
 
