@@ -197,9 +197,10 @@
         if (this.checked) {
             $("#agent-loader").show();
             $.get('/groupe/'+ $(this).val(), function (data) {
-                for (var i in JSON.parse(data)){
-                    $(':input[name="agents[]"]').val(i).attr('checked', true);
-                }
+                var ids = $.parseJSON(data);
+                $.each(ids, function (id) {
+                    $(':input[name="agents[]"][value="'+ id +'"]').attr('checked', true);
+                })
                 $("#agent-loader").hide();
             })
         }
