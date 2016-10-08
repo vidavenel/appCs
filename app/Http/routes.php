@@ -25,4 +25,6 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group(['middleware' => ['auth', 'can:admin']], function () {
     Route::resource('agent', 'AgentController');
     Route::resource('user', 'UserController');
+    Route::get('/configuration', 'ConfigurationController@index');
+    Route::post('/configuration', 'ConfigurationController@update');
 });
