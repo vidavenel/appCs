@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use HttpClient;
 use Log;
-use phpDocumentor\Reflection\Types\Array_;
 
 class SmsController extends Controller
 {
