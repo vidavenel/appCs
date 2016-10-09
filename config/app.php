@@ -167,6 +167,7 @@ return [
          * Package Service Providers...
          */
         Barryvdh\Debugbar\ServiceProvider::class,
+        Vinelab\Http\HttpServiceProvider::class,
         //
 
         /*
@@ -227,6 +228,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'HttpClient' => Vinelab\Http\Facades\Client::class,
     ],
 
 ];
