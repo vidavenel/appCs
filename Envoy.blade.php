@@ -8,6 +8,8 @@ php artisan route:clear
 php artisan cache:clear
 
 {{-- on pull le depot git --}}
+
+
 git checkout -- composer.lock
 git pull
 {{-- on update les dependances --}}

@@ -192,7 +192,11 @@ desired effect
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-right">
-                                    <a href="{{url('/logout')}}" class="btn btn-default btn-flat">Se déconnecter</a>
+                                    <a href="{{url('/logout')}}" class="btn btn-default btn-flat" onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">Se déconnecter</a>
+                                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
                                 </div>
                             </li>
                         </ul>

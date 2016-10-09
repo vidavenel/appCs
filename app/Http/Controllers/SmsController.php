@@ -14,15 +14,6 @@ use phpDocumentor\Reflection\Types\Array_;
 class SmsController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     */
-    public function __construct()
-    {
-        //
-    }
-
-    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -78,10 +69,8 @@ class SmsController extends Controller
             }
         }
 
-
         foreach ($agents as $agent) {
             // on envoi le SMS
-            //dd(\App\Ip::all()->last()->address);
             HttpClient::get('http://'. \App\Ip::all()->last()->address .':9090/sendsms?phone='. Agent::findOrFail($agent)->phone .'&text='.urlencode($request->get('body')).'&password=test');
             Log::info('New SMS de : '.$user->name.' Pour : '.Agent::findOrFail($agent)->nom.' detail : '.urlencode($request->get('body')));
         }
@@ -97,6 +86,7 @@ class SmsController extends Controller
      *
      * @param  int $id
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function show($id)
     {

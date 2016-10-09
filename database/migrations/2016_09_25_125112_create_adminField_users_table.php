@@ -13,7 +13,8 @@ class CreateAdminFieldUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->boolean('admin')->after('enabled');
+            $table->boolean('admin')->after('enabled')->default(0);
+            $table->string('confirmation_token')->nullable();
         });
     }
 
