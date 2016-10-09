@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Auth\PasswordController;
+use App\Notifications\EnabledUser;
 use App\User;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
@@ -85,11 +86,15 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
-        $user->update($request->all());
-        if ($request->get('admin') == 1){
-            $user->admin = true;
-            $user->save();
+
+        if ($user->enabled == 0 && $request->get('enabled') == 1){
+            $user->notify(new EnabledUser());
         }
+
+        $user->update($request->all());
+
+        $request->get('admin') == 1 ? $user->admin = true : $user->admin = false;
+        $user->save();
 
         return redirect(route('user.index'));
     }

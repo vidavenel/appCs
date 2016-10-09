@@ -55,7 +55,10 @@ return [
     |
     */
 
-    'from' => ['address' => 'contact@sp-aups.com', 'name' => null],
+    'from' => [
+        'address' => 'hello@example.com',
+        'name' => 'Example',
+    ],
 
     /*
     |--------------------------------------------------------------------------
