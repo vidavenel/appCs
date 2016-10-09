@@ -1,0 +1,35 @@
+version: "2"
+
+services:
+
+  mariadb:
+    image: mariadb
+    ports:
+     - "3306:3306"
+    environment:
+      MYSQL_DATABASE: appCs
+      MYSQL_USER: homestead
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: root
+
+  nginx:
+    image: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - "./:/var/www/html"
+      - "./nginx.conf:/etc/nginx/nginx.conf"
+    depends_on:
+      - php
+
+  php:
+    image: vidavenel/php:dev
+    volumes:
+      - "./:/var/www/html"
+    depends_on:
+      - mariadb
+
+  maildev:
+    image: djfarrelly/maildev
+    ports:
+      - '1080:80'
