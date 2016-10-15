@@ -40,6 +40,14 @@
         </div>
         @endif
 
+        @if(session('error'))
+            <div class="alert alert-error alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-check"></i> Erreur </h4>
+                {{session('erreur')}}
+            </div>
+        @endif
+
         <p class="login-box-msg">Renseignez vos identifiant et mot de passe</p>
 
         <form action="{{ url('/login') }}" method="post">
@@ -64,7 +72,7 @@
                 </div>
                 <!-- /.col -->
                 <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Se connecter</button>
                 </div>
                 <!-- /.col -->
             </div>
