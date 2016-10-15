@@ -71,6 +71,14 @@
                                 <label for="mail[password]">Mot de passe</label>
                                 <input type="text" name="mail[password]" id="mail[password]" class="form-control" value="{{$mail['password']}}">
                             </div>
+
+                            <div class="form-group col-md-8">
+                                <input type="text" id="addresseTestMail" class="form-control" placeholder="adresse">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <button type="button" id="sendTestMail" class="btn btn-primary form-control">Envoyer un email de test</button>
+                            </div>
+
                         </div>
 
 
@@ -88,3 +96,13 @@
     </section>
     <!-- /.content -->
 @endsection
+
+@push('script')
+<script>
+    $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+
+    $('#sendTestMail').click(function () {
+        $.get('{{url('/configuration')}}?sendTestMail='+ $('#addresseTestMail').val())
+    })
+</script>
+@endpush

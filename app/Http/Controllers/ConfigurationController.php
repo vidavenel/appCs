@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\TestMail;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -10,7 +11,10 @@ use Illuminate\Support\Facades\Mail;
 
 class ConfigurationController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
+        if ($request->exists('sendTestMail'))
+            Mail::to($request->get('sendTestMail'))->send(new TestMail());
+
         $mail = Config::get('mail');
         return view('configuration.index', compact('mail'));
     }
@@ -22,9 +26,5 @@ class ConfigurationController extends Controller
         file_put_contents($path, str_replace('MAIL_HOST='.Config::get('mail.username'), 'MAIL_USERNAME='.$request->get('mail')['username'], file_get_contents($path)));
         file_put_contents($path, str_replace('MAIL_HOST='.Config::get('mail.password'), 'MAIL_PASSWORD='.$request->get('mail')['password'], file_get_contents($path)));
         return redirect(action('ConfigurationController@index'));
-    }
-
-    public function sendTestMail(Request $request){
-        Mail::to($request->get('to'))->send('test');
     }
 }

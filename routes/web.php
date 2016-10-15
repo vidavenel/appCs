@@ -11,6 +11,7 @@
 |
 */
 Route::get('/ip', 'IpController@store');
+Route::get('/test', 'ConfigurationController@sendTestMail');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', 'SmsController@create');
