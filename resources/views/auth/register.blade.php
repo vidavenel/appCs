@@ -38,7 +38,7 @@
             {{ csrf_field() }}
 
             <div class="form-group has-feedback">
-                <input type="text" class="form-control" placeholder="Full name" name="name" value="{{ old('name') }}">
+                <input type="text" class="form-control" placeholder="Nom" name="name" value="{{ old('name') }}">
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
@@ -46,11 +46,11 @@
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="password" class="form-control" placeholder="Password" name="password">
+                <input type="password" class="form-control" placeholder="Mot de passe" name="password">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="password" class="form-control" placeholder="Retype password" name="password_confirmation">
+                <input type="password" class="form-control" placeholder="Vérification du mot de passe" name="password_confirmation">
                 <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
             </div>
             <div class="row">
