@@ -72,7 +72,7 @@
                 </div>
                 <!-- /.col -->
                 <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Se connecter</button>
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Connexion</button>
                 </div>
                 <!-- /.col -->
             </div>
