@@ -70,13 +70,13 @@ class SmsController extends Controller
         }
 
         $monolog = Log::getMonolog();
+        $monolog->pushHandler(new StreamHandler(storage_path().'/logs/sms.log'));
 
         foreach ($agents as $agent) {
             // on envoi le SMS
             $reponse = HttpClient::get('http://'. \App\Ip::all()->last()->address .':9090/sendsms?phone='. Agent::findOrFail($agent)->phone .'&text='.urlencode($request->get('body')).'&password=test');
             Log::info('New SMS de : '.$user->name.' Pour : '.Agent::findOrFail($agent)->nom.' detail : '.urlencode($request->get('body')));
 
-            $monolog->pushHandler(new StreamHandler(storage_path().'/logs/sms.log'));
             $monolog->addInfo('New SMS de : '.$user->name.' Pour : '.Agent::findOrFail($agent)->nom.' detail : '.$request->get('body'));
             $monolog->info($reponse->statusCode().' --- '.$reponse->content());
         }
