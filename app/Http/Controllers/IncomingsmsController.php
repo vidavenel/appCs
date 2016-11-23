@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Log;
+use Monolog\Handler\StreamHandler;
 
 class IncomingsmsController extends Controller
 {
-    /* http://ww.sp-aups.com/incomingsms?phone=nnn&smscenter=mmm&text=ttttt */
+    /* http://www.sp-aups.com/incomingsms?phone=nnn&smscenter=mmm&text=ttttt */
     /**
      * Display a listing of the resource.
      *
@@ -20,6 +22,8 @@ class IncomingsmsController extends Controller
         $monolog = Log::getMonolog();
         $monolog->pushHandler(new StreamHandler(storage_path().'/logs/incomingsms.log'));
         $monolog->info($request->all());
+
+        return 'ok';
     }
 
     /**
