@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use HttpClient;
 use Log;
+use Monolog\Handler\StreamHandler;
 
 class SmsController extends Controller
 {
@@ -70,8 +71,13 @@ class SmsController extends Controller
 
         foreach ($agents as $agent) {
             // on envoi le SMS
-            HttpClient::get('http://'. \App\Ip::all()->last()->address .':9090/sendsms?phone='. Agent::findOrFail($agent)->phone .'&text='.urlencode($request->get('body')).'&password=test');
+            $reponse = HttpClient::get('http://'. \App\Ip::all()->last()->address .':9090/sendsms?phone='. Agent::findOrFail($agent)->phone .'&text='.urlencode($request->get('body')).'&password=test');
             Log::info('New SMS de : '.$user->name.' Pour : '.Agent::findOrFail($agent)->nom.' detail : '.urlencode($request->get('body')));
+
+            $monolog = Log::getMonolog();
+            $monolog->pushHandler(new StreamHandler(storage_path().'/logs/sms.log'));
+            $monolog->addInfo('New SMS de : '.$user->name.' Pour : '.Agent::findOrFail($agent)->nom.' detail : '.urlencode($request->get('body')));
+            $monolog->info($reponse->statusCode().' --- '.$reponse->content());
         }
 
         // on associe les agent destinataires au SMS
