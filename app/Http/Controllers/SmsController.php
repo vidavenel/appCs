@@ -76,7 +76,7 @@ class SmsController extends Controller
 
             $monolog = Log::getMonolog();
             $monolog->pushHandler(new StreamHandler(storage_path().'/logs/sms.log'));
-            $monolog->addInfo('New SMS de : '.$user->name.' Pour : '.Agent::findOrFail($agent)->nom.' detail : '.urlencode($request->get('body')));
+            $monolog->addInfo('New SMS de : '.$user->name.' Pour : '.Agent::findOrFail($agent)->nom.' detail : '.$request->get('body'));
             $monolog->info($reponse->statusCode().' --- '.$reponse->content());
         }
 
