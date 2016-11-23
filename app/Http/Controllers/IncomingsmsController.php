@@ -19,7 +19,6 @@ class IncomingsmsController extends Controller
      */
     public function index(Request $request)
     {
-        dd($request->all());
         $monolog = Log::getMonolog();
         $monolog->pushHandler(new StreamHandler(storage_path().'/logs/incomingsms.log'));
         $monolog->info($request->get('phone').' - '. $request->get('smscenter').' - '.$request->get('text'));
