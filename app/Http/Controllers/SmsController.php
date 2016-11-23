@@ -71,7 +71,6 @@ class SmsController extends Controller
 
         $smsLog = Log::getMonolog();
         $smsLog->pushHandler(new StreamHandler(storage_path().'/logs/sms.log'));
-        $smsLog->addInfo('New SMS de : '.$user->name.' Pour : '.Agent::findOrFail($agent)->nom.' detail : '.$request->get('body'));
 
         $responseLog = Log::getMonolog();
         $responseLog->pushHandler(new StreamHandler(storage_path().'/logs/smsResponse.log'));
@@ -80,6 +79,7 @@ class SmsController extends Controller
             // on envoi le SMS
             //$reponse = HttpClient::get('http://'. \App\Ip::all()->last()->address .':9090/sendsms?phone='. Agent::findOrFail($agent)->phone .'&text='.urlencode($request->get('body')).'&password=test');
             Log::info('New SMS de : '.$user->name.' Pour : '.Agent::findOrFail($agent)->nom.' detail : '.urlencode($request->get('body')));
+            $smsLog->addInfo('New SMS de : '.$user->name.' Pour : '.Agent::findOrFail($agent)->nom.' detail : '.$request->get('body'));
 
             foreach (str_split(urlencode($request->get('body')), 160) as $msg){
                 $reponse = HttpClient::get('http://'. \App\Ip::all()->last()->address .':9090/sendsms?phone='. Agent::findOrFail($agent)->phone .'&text='.$msg.'&password=test');
