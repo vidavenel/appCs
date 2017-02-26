@@ -21,7 +21,7 @@
                     <div class="checkbox">
                         <label>
                             <input type="checkbox" name="agents[]" value="{{$agent->id}}"
-                                   @if(in_array($agent->id, $groupe->agents->lists('id')->all()))
+                                   @if(in_array($agent->id, $groupe->agents->pluck('id')->all()))
                                    checked
                                     @endif>
                             {{$agent->nom}} {{$agent->prenom}}
@@ -39,7 +39,7 @@
                     <div class="checkbox">
                         <label>
                             <input type="checkbox" name="agents[]" value="{{$agent->id}}"
-                                   @if(in_array($agent->id, $groupe->agents->lists('id')->all()))
+                                   @if(in_array($agent->id, $groupe->agents->pluck('id')->all()))
                                    checked
                                     @endif>
                             {{$agent->nom}} {{$agent->prenom}}
@@ -56,7 +56,7 @@
                     <div class="checkbox">
                         <label>
                             <input type="checkbox" name="agents[]" value="{{$agent->id}}"
-                                   @if(in_array($agent->id, $groupe->agents->lists('id')->all()))
+                                   @if(in_array($agent->id, $groupe->agents->pluck('id')->all()))
                                    checked
                                     @endif>
                             {{$agent->nom}} {{$agent->prenom}}

@@ -34,7 +34,8 @@
                             <div class="form-group">
                                 <label>Message</label>
                                 <textarea class="form-control" rows="3" placeholder="Corps du message ..."
-                                          name="body"></textarea>
+                                          name="body" maxlength="160"></textarea>
+                                <div class="pull-right"><small><span id="longueur">1</span> / 160</small></div>
                             </div>
 
                             <div class="row">
@@ -204,6 +205,10 @@
                 $("#agent-loader").hide();
             })
         }
+    })
+
+    $('textarea').on('input', function(){
+        $('#longueur').html($(this).val().length)
     })
 </script>
 @endpush
