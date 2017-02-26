@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use HttpClient;
 use Log;
+use Monolog\Handler\StreamHandler;
 
 class SmsController extends Controller
 {
@@ -19,10 +20,10 @@ class SmsController extends Controller
      */
     public function index()
     {
-        if (Auth::user()->admin)
-            $sms = Sms::paginate(20);
+        if (Auth::user()->id === 1)
+            $sms = Sms::latest()->paginate(20);
         else
-            $sms = Auth::user()->sms()->paginate(20);
+            $sms = Auth::user()->sms()->latest()->paginate(20);
         return view('sms.index', compact('sms'));
     }
 
@@ -51,31 +52,31 @@ class SmsController extends Controller
         $SMS->user()->associate($user);
         $SMS->save();
 
-        // on reupere les valuer saisie si elle n'xiste pas on creer un tableau vide
-        $groupes = is_array($request->get('groupes')) ? $request->get('groupes') : array();
-        $agents = is_array($request->get('agents')) ? $request->get('agents') : array();
+        $agents = $request->get('agents');
+        $ip = \App\Ip::all()->last()->address;
+        $message = str_replace(' ', '+', $request->get('body'));
 
-        // on converti les clé des tableaux groupe de string a int
-        $groupes = array_map('intval', $groupes);
-        $agents = array_map('intval', $agents);
+        $monolog = Log::getMonolog();
+        $monolog->pushHandler(new StreamHandler(storage_path().'/logs/sms.log'));
 
-        // on ajoute au tableau agents tous les agents des groupes sans doubon
-        foreach (Groupe::whereIn('id', $groupes)->get() as $item) {
-            foreach ($item->agents()->get() as $value) {
-                if (!in_array($value->id, $agents)){
-                    $agents[] = $value->id;
-                }
-            }
-        }
+        $i = 0;
 
         foreach ($agents as $agent) {
+            $agentObj = Agent::findOrFail($agent);
             // on envoi le SMS
-            HttpClient::get('http://'. \App\Ip::all()->last()->address .':9090/sendsms?phone='. Agent::findOrFail($agent)->phone .'&text='.urlencode($request->get('body')).'&password=test');
-            Log::info('New SMS de : '.$user->name.' Pour : '.Agent::findOrFail($agent)->nom.' detail : '.urlencode($request->get('body')));
+            $reponse = HttpClient::get('http://'. $ip .':9090/sendsms?phone='. $agentObj->phone .'&text='.$message.'&password=test');
+            Log::info('New SMS de : '.$user->name.' Pour : '.$agentObj->nom.' detail : '.$message);
+
+            $monolog->addInfo('New SMS de : '.$user->name.' Pour : '.$agentObj->nom.' detail : '.$request->get('body'));
+            $monolog->info($reponse->statusCode().' --- '.$reponse->content());
+
+            $i ++;
+            sleep(1);
         }
 
+        HttpClient::get('http://'. $ip .':9090/sendsms?phone=0659300020&text=fin+envoi+'.$i.'+sms+envoyé+Id:+'.$SMS->id.'&password=test');
         // on associe les agent destinataires au SMS
-        $SMS->agents()->attach($agents);
+        $SMS->agents()->attach($request->get('agents'));
 
         return redirect(route('sms.create'));
     }

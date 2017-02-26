@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="447f47d9-49bd-4419-8fa8-0897931f6140" name="nfs" url="http://nfs.davenel.xyz">
+        <fileTransfer host="nfs.davenel.xyz" port="22" privateKey="$USER_HOME$/.ssh/perso" rootFolder="/data/appcs_html" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

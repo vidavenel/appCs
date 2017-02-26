@@ -13,3 +13,5 @@ Homestead.json
 .idea/workspace.xml
 /nginx.conf
 /docker-compose.yml
+/build.conf
+/build.xml
