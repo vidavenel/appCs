@@ -20,6 +20,7 @@ class SmsController extends Controller
      */
     public function index()
     {
+        errer;
         if (Auth::user()->id === 1)
             $sms = Sms::latest()->paginate(20);
         else
