@@ -31,8 +31,7 @@ ADD ./docker/php/laravel.ini /usr/local/etc/php/conf.d
 ADD ./docker/php/laravel.pool.conf /usr/local/etc/php-fpm.d/
 
 ADD . /var/www/html
-
-RUN usermod -u 1000 www-data
+RUN chmod 777 -R /var/www/html/storage
 
 WORKDIR /var/www
 
